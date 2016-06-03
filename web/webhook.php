@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/facebook/php-sdk-v4/src/Facebook/autoload.php';
+require_once '../vendor/autoload.php';
 use FacebookAds\Object\Lead;
 
 $challenge = $_REQUEST['hub_challenge'];
@@ -18,12 +18,10 @@ $leadgen_id = $input['entry'][0]['changes'][0]['value']['leadgen_id'];
 $page_id = $input['entry'][0]['changes'][0]['value']['page_id'];
 $created_time = $input['entry'][0]['changes'][0]['value']['created_time'];
 
-// $form = new Lead($form_id);
-// $leads = $form->read();
 
 
 $form = new Lead($form_id);
-$pd = $form->read();
-error_log(print_r($pd, true));
+$leads = $form->read();
+error_log(print_r($leads, true));
 
 
