@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '../vendor/facebook/php-sdk-v4/src/Facebook/autoload.php';
 use FacebookAds\Object\Lead;
 
 $challenge = $_REQUEST['hub_challenge'];
