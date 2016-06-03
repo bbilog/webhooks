@@ -13,10 +13,10 @@ if ($verify_token === 'abc123') {
 $input = json_decode(file_get_contents('php://input'),true);
 
 
-$form_id = $input['entry'][0]['changes'][0]['value']['form_id']; 
-$leadgen_id = $input['entry'][0]['changes'][0]['value']['leadgen_id']; 
-$page_id = $input['entry'][0]['changes'][0]['value']['leadgen_id']; 
-$created_time = $input['entry'][0]['changes'][0]['value']['created_time']; 
+$form_id = $input['entry'][0]['changes'][0]['value']['form_id'];
+$leadgen_id = $input['entry'][0]['changes'][0]['value']['leadgen_id'];
+$page_id = $input['entry'][0]['changes'][0]['value']['page_id'];
+$created_time = $input['entry'][0]['changes'][0]['value']['created_time'];
 
 // $form = new Lead($form_id);
 // $leads = $form->read();
