@@ -1,7 +1,7 @@
 <?php
 
-// require_once 'vendor/autoload.php';
-// use FacebookAds\Object\Lead;
+require_once '../vendor/autoload.php';
+use FacebookAds\Object\Lead;
 
 $challenge = $_REQUEST['hub_challenge'];
 $verify_token = $_REQUEST['hub_verify_token'];
@@ -21,6 +21,9 @@ $created_time = $input['entry'][0]['changes'][0]['value']['created_time'];
 // $form = new Lead($form_id);
 // $leads = $form->read();
 
-error_log(print_r($input['entry'][0]['changes'][0]['value'], true));
+
+$form = new Lead($form_id);
+$pd = $form->read();
+error_log(print_r($pd, true));
 
 
