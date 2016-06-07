@@ -15,7 +15,7 @@ $page_id = $input['entry'][0]['changes'][0]['value']['page_id'];
 
 //$test = array('form_id' => $form_id,'lead_id' => $lead_id,'page_id' => $page_id );
 
-require_once  '../vendor/autoload.php';
+require_once  __DIR__.'/../vendor/autoload.php';
 
 use FacebookAds\Api;
 use FacebookAds\Object\Lead;
