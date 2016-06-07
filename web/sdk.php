@@ -31,7 +31,7 @@ if ($_SESSION['facebook_access_token']) {
   echo "You are logged in!";
 } else {
   $permissions = ['ads_management'];
-  $loginUrl = $helper->getLoginUrl('http://localhost:8888/marketing-api/', $permissions);
+  $loginUrl = $helper->getLoginUrl('https://propelrr-webhook-test2.herokuapp.com/sdk.php', $permissions);
   //echo '<a href="' . $loginUrl . '">Log in with Facebook</a>';
   echo '<button onclick="myFacebookLogin()">Login with Facebook</button>';
 } 
