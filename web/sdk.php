@@ -25,5 +25,5 @@ Api::init(
 );
 
 $form = new Lead($lead_id);
-$test = $form->data();
-error_log(print_r($test, true));
+$test = $form->read();
+error_log(print_r($lead_id, true));
