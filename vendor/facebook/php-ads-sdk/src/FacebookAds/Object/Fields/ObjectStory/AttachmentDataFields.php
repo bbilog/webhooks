@@ -37,5 +37,4 @@ class AttachmentDataFields extends AbstractEnum {
   const LINK = 'link';
   const NAME = 'name';
   const PICTURE = 'picture';
-  const VIDEO_ID = 'video_id';
 }

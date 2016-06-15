@@ -54,6 +54,12 @@ $logger = new CurlLogger();
 // To write to a file pass in a file handler
 // $logger = new CurlLogger(fopen('test','w'));
 
+// If you need to escape double quotes, use the following - useful for docs
+$logger->setEscapeLevels(1);
+
+// Hide target ids and tokens
+$logger->setShowSensitiveData(false);
+
 // Attach the logger to the Api instance
 Api::instance()->setLogger($logger);
 
@@ -63,5 +69,5 @@ use FacebookAds\Object\Fields\AdAccountFields;
 $account = (new AdAccount($account_id))->read(array(
   AdAccountFields::ID,
   AdAccountFields::NAME,
-  AdAccountFields::ACCOUNT_STATUS,
+  AdAccountFields::ACCOUNT_STATUS
 ));

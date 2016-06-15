@@ -1,45 +1,37 @@
 [
     {
         "name": "facebook/php-sdk-v4",
-        "version": "5.2.0",
-        "version_normalized": "5.2.0.0",
+        "version": "4.0.23",
+        "version_normalized": "4.0.23.0",
         "source": {
             "type": "git",
             "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
-            "reference": "c60fba1fe1de62db1e0776d32fc2fb778189459c"
+            "reference": "c82611e05596622c9bd7abfa1cea1512d885c95e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/c60fba1fe1de62db1e0776d32fc2fb778189459c",
-            "reference": "c60fba1fe1de62db1e0776d32fc2fb778189459c",
+            "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/c82611e05596622c9bd7abfa1cea1512d885c95e",
+            "reference": "c82611e05596622c9bd7abfa1cea1512d885c95e",
             "shasum": ""
         },
         "require": {
-            "php": "^5.4|^7.0"
+            "php": ">=5.4.0"
         },
         "require-dev": {
-            "guzzlehttp/guzzle": "~5.0",
-            "mockery/mockery": "~0.8",
-            "phpunit/phpunit": "~4.0"
+            "guzzlehttp/guzzle": "~4.0",
+            "mockery/mockery": "dev-master",
+            "phpunit/phpunit": "3.7.*"
         },
         "suggest": {
             "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
         },
-        "time": "2016-05-18 22:04:36",
+        "time": "2015-04-03 20:31:47",
         "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.x-dev"
-            }
-        },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
                 "Facebook\\": "src/Facebook/"
-            },
-            "files": [
-                "src/Facebook/polyfills.php"
-            ]
+            }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
@@ -59,60 +51,21 @@
         ]
     },
     {
-        "name": "facebook/php-ads-sdk",
-        "version": "2.5.2",
-        "version_normalized": "2.5.2.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/facebook/facebook-php-ads-sdk.git",
-            "reference": "406826df6249c466fb352228413ba99d6e65178c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/facebook/facebook-php-ads-sdk/zipball/406826df6249c466fb352228413ba99d6e65178c",
-            "reference": "406826df6249c466fb352228413ba99d6e65178c",
-            "shasum": ""
-        },
-        "require-dev": {
-            "phpunit/phpunit": ">=4.0.0",
-            "symfony/finder": "~2.6"
-        },
-        "time": "2016-04-07 14:51:52",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "FacebookAds\\": "src/FacebookAds/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "Facebook Platform"
-        ],
-        "description": "PHP SDK for Facebook ads",
-        "homepage": "https://developers.facebook.com/",
-        "keywords": [
-            "ads",
-            "facebook",
-            "sdk"
-        ]
-    },
-    {
         "name": "heroku/heroku-buildpack-php",
-        "version": "v105",
-        "version_normalized": "105.0.0.0",
+        "version": "v106",
+        "version_normalized": "106.0.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/heroku/heroku-buildpack-php.git",
-            "reference": "6006a1b3e6d2d563a681e80b8b7601a9854dabda"
+            "reference": "fd9fed742b2b815d2299487d83d28ebe9f9ddf61"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/6006a1b3e6d2d563a681e80b8b7601a9854dabda",
-            "reference": "6006a1b3e6d2d563a681e80b8b7601a9854dabda",
+            "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/fd9fed742b2b815d2299487d83d28ebe9f9ddf61",
+            "reference": "fd9fed742b2b815d2299487d83d28ebe9f9ddf61",
             "shasum": ""
         },
-        "time": "2016-05-27 14:11:35",
+        "time": "2016-06-08 15:35:38",
         "bin": [
             "bin/heroku-hhvm-apache2",
             "bin/heroku-hhvm-nginx",
@@ -141,6 +94,45 @@
             "hhvm",
             "nginx",
             "php"
+        ]
+    },
+    {
+        "name": "facebook/php-ads-sdk",
+        "version": "2.5.0",
+        "version_normalized": "2.5.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/facebook/facebook-php-ads-sdk.git",
+            "reference": "d12959a45b2e8ce00ba4e92f4f40a329c038e390"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/facebook/facebook-php-ads-sdk/zipball/d12959a45b2e8ce00ba4e92f4f40a329c038e390",
+            "reference": "d12959a45b2e8ce00ba4e92f4f40a329c038e390",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": ">=4.0.0",
+            "symfony/finder": "~2.6"
+        },
+        "time": "2015-10-08 10:21:57",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "FacebookAds\\": "src/FacebookAds/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Facebook Platform"
+        ],
+        "description": "PHP SDK for Facebook ads",
+        "homepage": "https://developers.facebook.com/",
+        "keywords": [
+            "ads",
+            "facebook",
+            "sdk"
         ]
     }
 ]

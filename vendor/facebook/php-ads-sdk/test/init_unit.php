@@ -22,15 +22,14 @@
  *
  */
 
-namespace FacebookAdsTest\Bootstrap;
+use FacebookAdsTest\Bootstrap;
 
 error_reporting(E_ALL | E_STRICT);
-if (!ini_get('date.timezone')) {
-  ini_set('date.timezone', 'UTC');
-}
-require_once __DIR__.'/FacebookAdsTest/Bootstrap/Bootstrap.php';
+date_default_timezone_set('GMT');
 
-$bootstrap = new Bootstrap();
-$bootstrap->init();
+require_once __DIR__.DIRECTORY_SEPARATOR
+  .'FacebookAdsTest'.DIRECTORY_SEPARATOR
+  .'Bootstrap.php';
 
-return $bootstrap;
+Bootstrap::initAutoloader();
+Bootstrap::initUnitConfig();

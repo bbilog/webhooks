@@ -35,9 +35,7 @@ class TargetingSpecsFields extends AbstractEnum {
   const AGE_MIN = 'age_min';
   const AGE_MAX = 'age_max';
   const GEO_LOCATIONS = 'geo_locations';
-  const GEO_MARKETS = 'geo_markets';
   const EXCLUDED_GEO_LOCATIONS = 'excluded_geo_locations';
-  const EXCLUSIONS = 'exclusions';
   const USER_ADCLUSTERS = 'user_adclusters';
   const INTERESTS = 'interests';
   const USER_OS = 'user_os';
@@ -46,14 +44,11 @@ class TargetingSpecsFields extends AbstractEnum {
   const PAGE_TYPES = 'page_types';
   const CONNECTIONS = 'connections';
   const EXCLUDED_CONNECTIONS = 'excluded_connections';
-  const FAMILY_STATUSES = 'family_statuses';
   const FRIENDS_OF_CONNECTIONS = 'friends_of_connections';
-  const FLEXIBLE_SPEC = 'flexible_spec';
   const BEHAVIORS = 'behaviors';
   const RELATIONSHIP_STATUSES = 'relationship_statuses';
   const INTERESTED_IN = 'interested_in';
   const LIFE_EVENTS = 'life_events';
-  const LOCATION_TYPES = 'location_types';
   const POLITICS = 'politics';
   const MARKETS = 'markets';
   const INDUSTRIES = 'industries';
@@ -76,7 +71,6 @@ class TargetingSpecsFields extends AbstractEnum {
   const LOCALES = 'locales';
   const ZIPS = 'zips';
   const CUSTOM_AUDIENCES = 'custom_audiences';
-  const CUSTOM_LOCATIONS = 'custom_locations';
   const EXCLUDED_CUSTOM_AUDIENCES = 'excluded_custom_audiences';
   const DYNAMIC_AUDIENCE_IDS = 'dynamic_audience_ids';
   const PRODUCT_AUDIENCE_SPECS = 'product_audience_specs';

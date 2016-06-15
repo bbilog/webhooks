@@ -75,11 +75,7 @@ abstract class AbstractAsyncJobObject extends AbstractCrudObject {
   }
 
   /**
-   * @param array $fields
-   * @param array $params
-   *
    * @return mixed
    */
-  abstract public function getResult(
-    array $fields = array(), array $params = array());
+  abstract public function getResult();
 }

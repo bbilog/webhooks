@@ -30,7 +30,6 @@ $app_secret = null;
 $account_id = null;
 define('SDK_DIR', __DIR__ . '/..'); // Path to the SDK directory
 $loader = include SDK_DIR.'/vendor/autoload.php';
-date_default_timezone_set('America/Los_Angeles');
 // Configurations - End
 
 if(is_null($access_token) || is_null($app_id) || is_null($app_secret)) {
@@ -82,11 +81,10 @@ $campaign  = new Campaign(null, $account->id);
 $campaign->setData(array(
   CampaignFields::NAME => 'My First Campaign',
   CampaignFields::OBJECTIVE => AdObjectives::LINK_CLICKS,
+  CampaignFields::STATUS => Campaign::STATUS_PAUSED,
 ));
 
-$campaign->validate()->create(array(
-  Campaign::STATUS_PARAM_NAME => Campaign::STATUS_PAUSED,
-));
+$campaign->validate()->create();
 echo "Campaign ID:" . $campaign->id . "\n";
 
 /**
@@ -129,20 +127,19 @@ $adset = new AdSet(null, $account->id);
 $adset->setData(array(
   AdSetFields::NAME => 'My First AdSet',
   AdSetFields::CAMPAIGN_ID => $campaign->id,
+  AdSetFields::STATUS => AdSet::STATUS_ACTIVE,
   AdSetFields::DAILY_BUDGET => '150',
   AdSetFields::TARGETING => $targeting,
   AdSetFields::OPTIMIZATION_GOAL => OptimizationGoals::REACH,
   AdSetFields::BILLING_EVENT => BillingEvents::IMPRESSIONS,
-  AdSetFields::BID_AMOUNT => 100,
+  AdSetFields::BID_AMOUNT => 2,
   AdSetFields::START_TIME =>
     (new \DateTime("+1 week"))->format(\DateTime::ISO8601),
   AdSetFields::END_TIME =>
     (new \DateTime("+2 week"))->format(\DateTime::ISO8601),
 ));
 
-$adset->validate()->create(array(
-  AdSet::STATUS_PARAM_NAME => AdSet::STATUS_ACTIVE,
-));
+$adset->validate()->create();
 
 echo 'AdSet  ID: '. $adset->id . "\n";
 

@@ -25,9 +25,7 @@
 namespace FacebookAdsTest\Object;
 
 use FacebookAds\Object\AdAccount;
-use FacebookAds\Object\Fields\AdAccountFields;
 use FacebookAds\Object\AsyncJobInsights;
-use FacebookAds\Object\Fields\InsightsFields;
 
 class AsyncJobInsightsTest extends AbstractAsyncJobTestCase {
 
@@ -37,19 +35,5 @@ class AsyncJobInsightsTest extends AbstractAsyncJobTestCase {
     $this->assertTrue($job instanceof AsyncJobInsights);
     $this->waitTillJobComplete($job);
     $job->getResult();
-  }
-
-  public function testFields() {
-    $account = new AdAccount($this->getConfig()->accountId);
-    $fields = array(AdAccountFields::NAME);
-    $account->read($fields);
-    $fields = array(InsightsFields::ACCOUNT_NAME);
-    $job = $account->getInsightsAsync($fields);
-    $this->assertTrue($job instanceof AsyncJobInsights);
-    $this->waitTillJobComplete($job);
-    $result = $job->getResult();
-    $this->assertEquals(
-      $result[0]->{InsightsFields::ACCOUNT_NAME},
-      $account->{AdAccountFields::NAME});
   }
 }

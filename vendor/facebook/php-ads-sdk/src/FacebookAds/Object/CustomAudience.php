@@ -27,15 +27,12 @@ namespace FacebookAds\Object;
 use FacebookAds\Http\RequestInterface;
 use FacebookAds\Object\Fields\CustomAudienceFields;
 use FacebookAds\Object\Values\CustomAudienceTypes;
-use FacebookAds\Object\CustomAudienceNormalizers\EmailNormalizer;
-use FacebookAds\Object\CustomAudienceNormalizers\HashNormalizer;
 
 class CustomAudience extends AbstractCrudObject {
 
- /**
-  * @var string
-  * @deprecated use HashNormalizer::HASH_TYPE_SHA256
- */
+  /**
+   * @var string
+   */
   const HASH_TYPE_SHA256 = 'sha256';
 
   /**
@@ -61,16 +58,10 @@ class CustomAudience extends AbstractCrudObject {
    * @param string $type
    * @param array $app_ids List of app ids from which the user ids has been
    *   gathered. Required when $type = 'UID'.
-   * @param bool $is_hashed
    * @return array
    */
-  public function addUsers(
-    array $users,
-    $type,
-    array $app_ids = array(),
-    $is_hashed = false) {
-
-    $params = $this->formatParams($users, $type, $app_ids, $is_hashed);
+  public function addUsers(array $users, $type, array $app_ids = array()) {
+    $params = $this->formatParams($users, $type, $app_ids);
     return $this->getApi()->call(
       '/'.$this->assureId().'/users',
       RequestInterface::METHOD_POST,
@@ -84,16 +75,10 @@ class CustomAudience extends AbstractCrudObject {
    * @param string $type
    * @param array $app_ids List of app ids from which the user ids has been
    *   gathered. Required when $type = 'UID'.
-   * @param bool $is_hashed
    * @return array
    */
-  public function removeUsers(
-    array $users,
-    $type,
-    array $app_ids = array(),
-    $is_hashed = false) {
-
-    $params = $this->formatParams($users, $type, $app_ids, $is_hashed);
+  public function removeUsers(array $users, $type, array $app_ids = array()) {
+    $params = $this->formatParams($users, $type, $app_ids);
     return $this->getApi()->call(
       '/'.$this->assureId().'/users',
       RequestInterface::METHOD_DELETE,
@@ -107,16 +92,10 @@ class CustomAudience extends AbstractCrudObject {
    * @param string $type
    * @param array $app_ids List of app ids from which the user ids has been
    *   gathered. Required when $type = 'UID'.
-   * @param bool $is_hashed
    * @return array
    */
-  public function optOutUsers(
-    array $users,
-    $type,
-    array $app_ids = array(),
-    $is_hashed = false) {
-
-    $params = $this->formatParams($users, $type, $app_ids, $is_hashed);
+  public function optOutUsers(array $users, $type, array $app_ids = array()) {
+    $params = $this->formatParams($users, $type, $app_ids);
     return $this->getApi()->call(
       '/'.$this->assureParentId().'/usersofanyaudience',
       RequestInterface::METHOD_DELETE,
@@ -129,27 +108,18 @@ class CustomAudience extends AbstractCrudObject {
    * @param array $users
    * @param string $type
    * @param array $app_ids
-   * @param bool $is_hashed
    * @return array
    */
   protected function formatParams(
-    array $users,
-    $type,
-    array $app_ids = array(),
-    $is_hashed = false) {
+    array $users, $type, array $app_ids = array()) {
 
     if ($type == CustomAudienceTypes::EMAIL
       || $type == CustomAudienceTypes::PHONE) {
       foreach ($users as &$user) {
         if ($type == CustomAudienceTypes::EMAIL) {
-          $normalizer = new EmailNormalizer();
-          $user = $normalizer->normalize(CustomAudienceTypes::EMAIL, $user);
+          $user = trim(strtolower($user), " \t\r\n\0\x0B.");
         }
-        if (!$is_hashed) {
-          $hash_normalizer = new HashNormalizer();
-          $user = $hash_normalizer->normalize(
-            CustomAudienceTypes::EMAIL, $user);
-        }
+        $user = hash(self::HASH_TYPE_SHA256, $user);
       }
     }
 

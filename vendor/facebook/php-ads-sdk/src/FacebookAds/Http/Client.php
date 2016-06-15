@@ -206,16 +206,14 @@ class Client {
     $response_content = $response->getContent();
 
     if ($response_content === null) {
-      throw (new EmptyResponseException($response->getStatusCode()))
-        ->setResponse($response);
+      throw new EmptyResponseException($response->getStatusCode());
     }
 
     if (is_array($response_content)
       && array_key_exists('error', $response_content)) {
 
       throw RequestException::create(
-        $response->getContent(), $response->getStatusCode())
-          ->setResponse($response);
+        $response->getContent(), $response->getStatusCode());
     }
 
     return $response;

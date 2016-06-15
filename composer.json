@@ -1,7 +1,9 @@
 {
   "require" : {
-    "facebook/php-sdk-v4" : "~5.0",
-    "facebook/php-ads-sdk": "2.5.*"
+    "php": "^5.4.0",
+    "ext-mbstring": "*",
+    "facebook/php-sdk-v4" : "4.0.*",
+    "facebook/php-ads-sdk": "2.5"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"

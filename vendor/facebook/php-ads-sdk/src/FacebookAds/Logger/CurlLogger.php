@@ -27,7 +27,6 @@ namespace FacebookAds\Logger;
 use FacebookAds\Http\Parameters;
 use FacebookAds\Http\RequestInterface;
 use FacebookAds\Http\ResponseInterface;
-use FacebookAds\Logger\CurlLogger\JsonAwareParameters;
 
 class CurlLogger implements LoggerInterface {
 
@@ -35,11 +34,6 @@ class CurlLogger implements LoggerInterface {
    * @var string
    */
   const PARAM_DEFAULT_FLAG = 'd';
-
-  /**
-   * @var string
-   */
-  const PARAM_URLENCODE_FLAG = '-data-urlencode';
 
   /**
    * @var string
@@ -72,32 +66,10 @@ class CurlLogger implements LoggerInterface {
   protected $handle;
 
   /**
-   * @var bool
-   */
-  protected $jsonPrettyPrint = false;
-
-  /**
    * @param resource $handle
    */
   public function __construct($handle = null) {
     $this->handle = is_resource($handle) ? $handle : STDOUT;
-  }
-
-  /**
-   * @return bool
-   */
-  public function isJsonPrettyPrint() {
-    return $this->jsonPrettyPrint;
-  }
-
-  /**
-   * @param bool $json_pretty_print
-   * @return $this
-   */
-  public function setJsonPrettyPrint($json_pretty_print) {
-    $this->jsonPrettyPrint = $json_pretty_print;
-
-    return $this;
   }
 
   /**
@@ -119,50 +91,37 @@ class CurlLogger implements LoggerInterface {
 
   /**
    * @param string $method
-   * @param string $value
    * @return string
    */
-  public static function getParamFlag($method, $value) {
+  public static function getParamFlag($method) {
     return $method === RequestInterface::METHOD_POST
       ? static::PARAM_POST_FLAG
-      : (strstr($value, "\n")
-        ? static::PARAM_URLENCODE_FLAG
-        : static::PARAM_DEFAULT_FLAG);
+      : static::PARAM_DEFAULT_FLAG;
   }
 
   /**
-   * @param string $string
-   * @param int $indent
+   * @param $param_name
    * @return string
    */
-  protected function indent($string, $indent) {
-    return str_replace("\n", " \n".str_repeat(' ', $indent), $string);
+  public static function getPlaceholder($param_name) {
+    return '<'.strtoupper($param_name).'>';
   }
 
   /**
    * @param Parameters $params
-   * @param string $method
+   * @param string $flag
    * @param bool $is_file
    * @return string
    */
-  protected function processParams(Parameters $params, $method, $is_file) {
+  protected function processParams(Parameters $params, $flag, $is_file) {
     $chunks = array();
-    if ($this->isJsonPrettyPrint()) {
-      $params = new JsonAwareParameters($params);
-    }
     foreach ($params->export() as $name => $value) {
-      $value = addcslashes(
-        strpos($value, "\n") !== false
-          ? $this->indent($value, 2)
-          : $value,
-        '\'');
-
       $chunks[$name] = sprintf(
         '-%s \'%s=%s%s\'',
-        $this->getParamFlag($method, $value),
+        $flag,
         $name,
         $is_file ? '@' : '',
-        $value);
+        addcslashes($value, '\''));
     }
 
     return $chunks;
@@ -194,36 +153,6 @@ class CurlLogger implements LoggerInterface {
   }
 
   /**
-   * @param array $array
-   * @param mixed $key
-   * @return mixed
-   */
-  protected function removeArrayKey(array &$array, $key) {
-    if (array_key_exists($key, $array)) {
-      $value = $array[$key];
-      unset($array[$key]);
-
-      return $value;
-    } else {
-
-      return null;
-    }
-  }
-
-  /**
-   * @param array $params
-   * @return array
-   */
-  protected function sortParams(array $params) {
-    $access_token = $this->removeArrayKey($params, 'access_token');
-    $appsecret_proof = $this->removeArrayKey($params, 'appsecret_proof');
-    $access_token !== null && $params['access_token'] = $access_token;
-    $appsecret_proof !== null && $params['appsecret_proof'] = $appsecret_proof;
-
-    return $params;
-  }
-
-  /**
    * @param string $level
    * @param RequestInterface $request
    * @param array $context
@@ -232,12 +161,12 @@ class CurlLogger implements LoggerInterface {
     $level, RequestInterface $request, array $context = array()) {
 
     $new_line = ' \\'.PHP_EOL.'  ';
-    $method = $request->getMethod();
-    $method_flag = static::getMethodFlag($method);
-    $params = $this->sortParams(array_merge(
-      $this->processParams($request->getQueryParams(), $method, false),
-      $this->processParams($request->getBodyParams(), $method, false),
-      $this->processParams($request->getFileParams(), $method, true)));
+    $method_flag = static::getMethodFlag($request->getMethod());
+    $param_flag = static::getParamFlag($request->getMethod());
+    $params = array_merge(
+      $this->processParams($request->getQueryParams(), $param_flag, false),
+      $this->processParams($request->getBodyParams(), $param_flag, false),
+      $this->processParams($request->getFileParams(), $param_flag, true));
 
     $buffer = 'curl'.($method_flag ? ' -'.$method_flag : '');
     foreach ($params as $param) {
