@@ -2,8 +2,13 @@
   "require" : {
     "php": "^5.4.0",
     "ext-mbstring": "*",
+<<<<<<< HEAD
     "facebook/php-sdk-v4" : "4.0.*",
     "facebook/php-ads-sdk": "2.5"
+=======
+    "facebook/php-sdk-v4" : "~5.0",
+    "facebook/php-ads-sdk": "2.5.*"
+>>>>>>> c3797b84051377154efee30772c5ac7df0d09e7b
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
