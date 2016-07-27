@@ -1,10 +1,10 @@
 <?php
-require_once  __DIR__.'/../vendor/autoload.php';
+// require_once  __DIR__.'/../vendor/autoload.php';
 
-use FacebookAds\Api;
-use FacebookAds\Object\Lead;
-use FacebookAds\Object\Fields\LeadFields;
-use FacebookAds\Object\LeadgenForm;
+// use FacebookAds\Api;
+// use FacebookAds\Object\Lead;
+// use FacebookAds\Object\Fields\LeadFields;
+// use FacebookAds\Object\LeadgenForm;
 
 Api::init('287026681636328','d11f7cab83ce6d228703dd3defd4f05e','EAAEFDJtmZAegBAFmp0eIR9c9iZBwXSmtJRkAQRHIvgnNsuNSJ9ynY0dREUbXv4yKUa7HfoxSZCFkKdo3LycxHNUZAIw0k83KSp6JfvX1DssTw2wyULZC7ya31ZBZCRLWWgbFI5RAo0PPEfHasO1P8SCzr1zP3GIaXkZD');
 
@@ -31,9 +31,9 @@ $page_id = $input['entry'][0]['changes'][0]['value']['page_id'];
 
 // save leads to database
 // leadsdb id, leadsid, leadgenid, pageid, value
-$leads = new Lead($lead_id);
-$leads->read();
-$fdata = $leads->field_data;
+// $leads = new Lead($lead_id);
+// $leads->read();
+// $fdata = $leads->field_data;
 // error_log(print_r($fdata, true));
 
 /* 
