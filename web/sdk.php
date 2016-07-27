@@ -17,7 +17,7 @@ if ($verify_token === 'propelrr123abc321') {
 }
 
 $input = json_decode(file_get_contents('php://input'),true);
-// error_log(print_r($input, true));
+error_log(print_r($input, true));
 
 $form_id = $input['entry'][0]['changes'][0]['value']['form_id'];
 $lead_id = $input['entry'][0]['changes'][0]['value']['leadgen_id'];
