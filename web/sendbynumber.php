@@ -9,14 +9,14 @@ use FacebookAds\Object\LeadgenForm;
 Api::init('287026681636328','d11f7cab83ce6d228703dd3defd4f05e','EAAEFDJtmZAegBAFmp0eIR9c9iZBwXSmtJRkAQRHIvgnNsuNSJ9ynY0dREUbXv4yKUa7HfoxSZCFkKdo3LycxHNUZAIw0k83KSp6JfvX1DssTw2wyULZC7ya31ZBZCRLWWgbFI5RAo0PPEfHasO1P8SCzr1zP3GIaXkZD');
 
 $access_token = 'EAAEFDJtmZAegBAFmp0eIR9c9iZBwXSmtJRkAQRHIvgnNsuNSJ9ynY0dREUbXv4yKUa7HfoxSZCFkKdo3LycxHNUZAIw0k83KSp6JfvX1DssTw2wyULZC7ya31ZBZCRLWWgbFI5RAo0PPEfHasO1P8SCzr1zP3GIaXkZD';
-
+$number = $_REQUEST['num'];
 
 
 		$message_to_reply = 'Yo! I have sent you a messenger message using your number';
 
 		$url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$access_token;
 		$ch = curl_init($url);
-		$jsonData = '{"recipient":{"phone_number":"0929 560 2069"},"message":{"text":"'.$message_to_reply.'"}}';
+		$jsonData = '{"recipient":{"phone_number":"'.$number.'"},"message":{"text":"'.$message_to_reply.'"}}';
 		$jsonDataEncoded = $jsonData;
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
