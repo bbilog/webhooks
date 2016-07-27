@@ -6,3 +6,7 @@ use FacebookAds\Object\Lead;
 use FacebookAds\Object\Fields\LeadFields;
 
 echo 'asdf';
+
+$leads = new Lead('1019631454816193');
+$asf = $leads->read();
+var_dump($asf);
