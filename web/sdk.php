@@ -6,7 +6,7 @@
 // use FacebookAds\Object\Fields\LeadFields;
 // use FacebookAds\Object\LeadgenForm;
 
-Api::init('287026681636328','d11f7cab83ce6d228703dd3defd4f05e','EAAEFDJtmZAegBAFmp0eIR9c9iZBwXSmtJRkAQRHIvgnNsuNSJ9ynY0dREUbXv4yKUa7HfoxSZCFkKdo3LycxHNUZAIw0k83KSp6JfvX1DssTw2wyULZC7ya31ZBZCRLWWgbFI5RAo0PPEfHasO1P8SCzr1zP3GIaXkZD');
+//Api::init('287026681636328','d11f7cab83ce6d228703dd3defd4f05e','EAAEFDJtmZAegBAFmp0eIR9c9iZBwXSmtJRkAQRHIvgnNsuNSJ9ynY0dREUbXv4yKUa7HfoxSZCFkKdo3LycxHNUZAIw0k83KSp6JfvX1DssTw2wyULZC7ya31ZBZCRLWWgbFI5RAo0PPEfHasO1P8SCzr1zP3GIaXkZD');
 
 
 $challenge = $_REQUEST['hub_challenge'];
@@ -18,9 +18,9 @@ if ($verify_token === 'propelrr123abc321') {
 
 $input = json_decode(file_get_contents('php://input'),true);
 // error_log(print_r($input, true));
-$form_id = $input['entry'][0]['changes'][0]['value']['form_id'];
-$lead_id = $input['entry'][0]['changes'][0]['value']['leadgen_id'];
-$page_id = $input['entry'][0]['changes'][0]['value']['page_id'];
+// $form_id = $input['entry'][0]['changes'][0]['value']['form_id'];
+// $lead_id = $input['entry'][0]['changes'][0]['value']['leadgen_id'];
+// $page_id = $input['entry'][0]['changes'][0]['value']['page_id'];
 
 // check if form id is present in leadgendb
 // leadgendb id, leadgenid, name, pageid, fields,
