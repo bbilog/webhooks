@@ -48,7 +48,7 @@ if(!isset($input['entry'][0]['changes']) || empty($input['entry'][0]['changes'])
 				// query for entity
 				foreach ($entity as $ek => $eval) {
 					foreach ($eval as $ename => $eitem){
-						if(preg_match("/ (".$aa.") /i", $eitem){
+						if(preg_match("/ (".$aa.") /i", $eitem)){
 							if( !isset($ret_ent[$ek]) || empty($ret_ent[$ek])){
 								$ret_ent[$ek] = [];
 							}
