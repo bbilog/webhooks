@@ -8,11 +8,11 @@ if(isset($_POST['submit']) && !empty($_POST['submit']) && isset($_POST['action']
 
 	switch ($action) {
 		case 'add_greeting':
-			$jsonData = '{"setting_type":"greeting","greeting":{"text":"'.$_POST['add_greeting'].'"}}';
+			$jsonData = '{"setting_type":"greeting","greeting":{"text":"'.$_POST['greeting'].'"}}';
 			$endpoint = 'thread_settings';
 			break;
 		case 'pmenu_add':
-			$jsonData = '{"setting_type" : "call_to_actions","thread_state" : "existing_thread","call_to_actions":[{"type":"postback","title":"'.$_POST['menu1'].'","payload":"'.$_POST['pmenu1'].'"},{"type":"postback","title":"'.$_POST['menu1'].'","payload":"'.$_POST['pmenu1'].'"},{"type":"web_url","title":"View Website","url":"http://www.uratex.com.ph/"}]}';
+			$jsonData = '{"setting_type" : "call_to_actions","thread_state" : "existing_thread","call_to_actions":[{"type":"postback","title":"'.$_POST['menu1'].'","payload":"'.$_POST['pmenu1'].'"},{"type":"postback","title":"'.$_POST['menu2'].'","payload":"'.$_POST['pmenu2'].'"},{"type":"web_url","title":"View Website","url":"http://www.uratex.com.ph/"}]}';
 			$endpoint = 'thread_settings';
 			break;
 		case 'pmenu_remove':
