@@ -87,6 +87,15 @@ can be bought at: ".$sample_data[$value][$que];
 						$randresp[] = '"text":"Sinong mas pogi:","quick_replies":[{"content_type":"text","title":"Jarniel","payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"},{"content_type":"text","title":"Vino","payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"}]';
 						$message_json = $randresp[mt_rand(0, count($randresp) - 1)];
 					}
+					
+				} else {
+
+					$randresp[] = '"attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"Welcome to Happy monkey, I\'m uratex-bot","image_url":"https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.0-1/p160x160/10469695_563190533791082_571472624565872456_n.jpg?oh=9e062ad9f64a9b75bd774cb9af813642&oe=581C080F","subtitle":"The sleep specialist, and mostly I gave random responses",
+        "buttons":[{"type":"web_url","url":"https://www.uratex.com.ph","title":"View Website"},{"type":"postback", "title":"It\'s something","payload":"USER_DEFINED_SOMETHING"}]}]}}';
+        			//https://lh3.googleusercontent.com/-1cABf_2Htdk/V5lv4RHnOkI/AAAAAAAABPo/En4auEusT6kZTXC4CgJek9H-ovmLNyjbACL0B/w619-h825-no/9019761398270513083%253Faccount_id%253D2
+        			$randresp[] = '"attachment":{"type":"image","payload":{"url":"https://lh3.googleusercontent.com/-1cABf_2Htdk/V5lv4RHnOkI/AAAAAAAABPo/En4auEusT6kZTXC4CgJek9H-ovmLNyjbACL0B/w619-h825-no/9019761398270513083%253Faccount_id%253D2"}}';
+					$randresp[] = '"text":"Sinong mas pogi:","quick_replies":[{"content_type":"text","title":"Jarniel","payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"},{"content_type":"text","title":"Vino","payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"}]';
+					$message_json = $randresp[mt_rand(0, count($randresp) - 1)];
 				}
 
 			}
