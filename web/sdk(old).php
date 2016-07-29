@@ -1,6 +1,6 @@
 <?php
 
-$message = "magkano item1 at saan?daw";
+$message = "how much bed?";
 //$message = "masfdfs";
 
 $entity = [];
@@ -59,7 +59,11 @@ $sample_data =  array('item1' => array('prices' => 35, 'location' => 'kung saan 
           
           // end pattern 1
         }
-        
-  }
 
+  }
+  if(!$pcond){
+
+  } else {
+    
 echo $message_to_reply;
+  }

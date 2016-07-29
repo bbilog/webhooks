@@ -28,8 +28,8 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 		if(isset($input['entry'][0]['messaging'][0]['message']['quick_reply']) && !empty($input['entry'][0]['messaging'][0]['message']['quick_reply'])){
 
 			$payload = $input['entry'][0]['messaging'][0]['message']['quick_reply']['payload'];
-			$randresp['POGI_PAYLOAD_VINO'] = '"attachment":{"type":"image","payload":{"url":"https://lh3.googleusercontent.com/-1cABf_2Htdk/V5lv4RHnOkI/AAAAAAAABPo/En4auEusT6kZTXC4CgJek9H-ovmLNyjbACL0B/w619-h825-no/9019761398270513083%253Faccount_id%253D2"}}';
-			$randresp['POGI_PAYLOAD_ELWIN'] = '"attachment":{"type":"image","payload":{"url":"https://lh3.googleusercontent.com/-QHH6dmGrQhE/V2qO4rBV17I/AAAAAAAAAEU/79w8DibYYO8jmLxRKXi-LOhGJKc5zhUmwCL0B/w366-h550-no/2016-06-22.jpg"}}';
+			$randresp['POGI_PAYLOAD_ELWIN'] = '"attachment":{"type":"image","payload":{"url":"https://lh3.googleusercontent.com/-1cABf_2Htdk/V5lv4RHnOkI/AAAAAAAABPo/En4auEusT6kZTXC4CgJek9H-ovmLNyjbACL0B/w619-h825-no/9019761398270513083%253Faccount_id%253D2"}}';
+			$randresp['POGI_PAYLOAD_VINO'] = '"attachment":{"type":"image","payload":{"url":"https://lh3.googleusercontent.com/-QHH6dmGrQhE/V2qO4rBV17I/AAAAAAAAAEU/79w8DibYYO8jmLxRKXi-LOhGJKc5zhUmwCL0B/w366-h550-no/2016-06-22.jpg"}}';
 			$randresp['POGI_PAYLOAD_JLC'] = '"attachment":{"type":"image","payload":{"url":"https://lh4.googleusercontent.com/-McufwNre2-U/V1J8Qq1BI9I/AAAAAAAAAew/-8itXqgbc-0l2pJiriGmZ-KhohGp3R3sQCL0B/w651-h396-no/Screen%2BShot%2B2016-06-04%2Bat%2B2.57.54%2BPM.png"}}';
 			$randresp['POGI_PAYLOAD_WALA'] = '"attachment":{"type":"image","payload":{"url":"https://lh5.googleusercontent.com/-ex1Bdu5vJ1g/V1lQDF6E53I/AAAAAAAAAD4/n9ZJ396_m2oZEdmlgAKg4itI5Bx4_PXwwCL0B/w480-h384-no/2016-06-09.jpg"}}';
 			
@@ -83,32 +83,29 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 					if(isset($ret_ent['query']) && !empty($ret_ent['query']) && isset($ret_ent['products']) && !empty($ret_ent['products'])){
 						$message_to_reply = '';
 						foreach ($ret_ent['products'] as $value) {
-							$message_to_reply .= "
-							".$value." - ";
+							$message_to_reply .= "".$value." - ";
 							foreach ($ret_ent['query'] as $que) {
 								switch ($que) {
 								case 'prices':
-									$message_to_reply .= "
-								price: ".$sample_data[$value][$que];
+									$message_to_reply .= " price: ".$sample_data[$value][$que];
 									break;
 								case 'location':
-									$message_to_reply .= "
-								can be bought at: ".$sample_data[$value][$que];
+									$message_to_reply .= " can be bought at: ".$sample_data[$value][$que];
 									break;
 								}
 							}
 						}
-						$message_to_reply = '"text":"'.$message_to_reply.'"';
+					// end pattern 1
 						
 					} else {
-						$message_to_reply = '"text":"Sorry I didn\'t catch that, could you rephrase your question."';
+						$message_to_reply = 'Sorry I didn\'t catch that, could you rephrase your question.';
 					}
 					
-					// end pattern 1
+					
 				}
 
 			}
-
+			$message_to_reply = '"text":"'.$message_to_reply.'"';
 			if(!$pcond) {
 				$randresp[] = '"attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"Welcome to Happy monkey, I\'m uratex-bot","image_url":"https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.0-1/p160x160/10469695_563190533791082_571472624565872456_n.jpg?oh=9e062ad9f64a9b75bd774cb9af813642&oe=581C080F","subtitle":"The sleep specialist, and mostly I gave random responses","buttons":[{"type":"web_url","url":"https://www.uratex.com.ph","title":"View Website"},{"type":"postback", "title":"It\'s something","payload":"USER_DEFINED_SOMETHING"}]}]}}';
     			//https://lh3.googleusercontent.com/-1cABf_2Htdk/V5lv4RHnOkI/AAAAAAAABPo/En4auEusT6kZTXC4CgJek9H-ovmLNyjbACL0B/w619-h825-no/9019761398270513083%253Faccount_id%253D2
