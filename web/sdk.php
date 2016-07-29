@@ -53,6 +53,7 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 			$entity = [];
 			$entity['products'] = array('item1' => 'bed,something,item1', 'item2' => 'matress,something2,item2','item3' => 'sofa,item3');
 			$entity['query'] = array('price' => 'price,much,magkano,pricelist','location'=>'location,saan,find');
+			//$entity['stores'] = array('store1' => '');
 
 			// sample data
 			$sample_data =  array('item1' => array('prices' => 35, 'location' => 'kung saan saan, sa tabi tabi'),'item2' => array('prices' => 10, 'location' => 'sa tabi tabi, Sa May gilid'), 'item1' => array('prices' => 5, 'location' => 'Sa May Gilid'));
@@ -87,7 +88,7 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 							$message_to_reply .= "".$value." - ";
 							foreach ($ret_ent['query'] as $que) {
 								switch ($que) {
-								case 'prices':
+								case 'price':
 									$message_to_reply .= " price: ".$sample_data[$value][$que];
 									break;
 								case 'location':
