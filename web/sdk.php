@@ -19,6 +19,7 @@ if ($verify_token === 'propelrr123abc321') {
 
 $input = json_decode(file_get_contents('php://input'),true);
 error_log(print_r($input, true));
+$message_to_reply = 'Yo!';
 
 if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messaging'])){
 	$sender = $input['entry'][0]['messaging'][0]['sender']['id'];
@@ -32,7 +33,7 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 			$randresp['POGI_PAYLOAD_JLC'] = '"attachment":{"type":"image","payload":{"url":"https://lh4.googleusercontent.com/-McufwNre2-U/V1J8Qq1BI9I/AAAAAAAAAew/-8itXqgbc-0l2pJiriGmZ-KhohGp3R3sQCL0B/w651-h396-no/Screen%2BShot%2B2016-06-04%2Bat%2B2.57.54%2BPM.png"}}';
 			$randresp['POGI_PAYLOAD_WALA'] = '"attachment":{"type":"image","payload":{"url":"https://lh5.googleusercontent.com/-ex1Bdu5vJ1g/V1lQDF6E53I/AAAAAAAAAD4/n9ZJ396_m2oZEdmlgAKg4itI5Bx4_PXwwCL0B/w480-h384-no/2016-06-09.jpg"}}';
 			
-
+			$message_to_reply = $randresp[$payload];
 			$url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$access_token;
 			$ch = curl_init($url);
 			$jsonData = '{"recipient":{"id":"'.$sender.'"},"message":{'.$message_to_reply.'}}';
