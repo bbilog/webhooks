@@ -10,15 +10,15 @@ Api::init('287026681636328','d11f7cab83ce6d228703dd3defd4f05e','EAAEFDJtmZAegBAF
 
 $access_token = 'EAAEFDJtmZAegBAFmp0eIR9c9iZBwXSmtJRkAQRHIvgnNsuNSJ9ynY0dREUbXv4yKUa7HfoxSZCFkKdo3LycxHNUZAIw0k83KSp6JfvX1DssTw2wyULZC7ya31ZBZCRLWWgbFI5RAo0PPEfHasO1P8SCzr1zP3GIaXkZD';
 
-$challenge = $_REQUEST['hub_challenge'];
-$verify_token = $_REQUEST['hub_verify_token'];
+// $challenge = $_REQUEST['hub_challenge'];
+// $verify_token = $_REQUEST['hub_verify_token'];
 
-if ($verify_token === 'propelrr123abc321') {
-  echo $challenge;
-}
+// if ($verify_token === 'propelrr123abc321') {
+//   echo $challenge;
+// }
 
 $input = json_decode(file_get_contents('php://input'),true);
-error_log(print_r($input, true));
+// error_log(print_r($input, true));
 
 // function for messenger bot
 if(!isset($input['entry'][0]['changes']) || empty($input['entry'][0]['changes'])){
@@ -38,59 +38,59 @@ if(!isset($input['entry'][0]['changes']) || empty($input['entry'][0]['changes'])
 			$sample_data =  array('item1' => array('prices' => 35, 'location' => 'kung saan saan, sa tabi tabi'),'item2' => array('prices' => 10, 'location' => 'sa tabi tabi, Sa May gilid'), 'item1' => array('prices' => 5, 'location' => 'Sa May Gilid'));
 
 			$message_to_reply = 'Yo!';
-			$message_arr = preg_split('/([^.:!?]+[.:!?]+)/', $message, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			//$message_arr = preg_split('/([^.:!?]+[.:!?]+)/', $message, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 			$pcond = false;
 
-			foreach ($message_arr as $k => $val) {
-				$val = trim(strtolower(str_replace(array('.',':','!','?'), '', $val)));
-				$aa = str_replace(' ','|',$val);
-				echo '<br>'.$val;
-				echo '<br>'.$aa;
+			// foreach ($message_arr as $k => $val) {
+			// 	$val = trim(strtolower(str_replace(array('.',':','!','?'), '', $val)));
+			// 	$aa = str_replace(' ','|',$val);
+			// 	echo '<br>'.$val;
+			// 	echo '<br>'.$aa;
 
-				$ret_ent = [];
-				foreach ($entity as $ek => $eval) {
-					foreach ($eval as $ename => $eitem){
-						if(preg_match('/('.$aa.')/', $eitem)){
-							if( !isset($ret_ent[$ek]) || empty($ret_ent[$ek])){
-								$ret_ent[$ek] = [];
-							}
-							$ret_ent[$ek][] = $ename;
-						}
-					}
-				}
+			// 	$ret_ent = [];
+			// 	foreach ($entity as $ek => $eval) {
+			// 		foreach ($eval as $ename => $eitem){
+			// 			if(preg_match('/('.$aa.')/', $eitem)){
+			// 				if( !isset($ret_ent[$ek]) || empty($ret_ent[$ek])){
+			// 					$ret_ent[$ek] = [];
+			// 				}
+			// 				$ret_ent[$ek][] = $ename;
+			// 			}
+			// 		}
+			// 	}
 
-				if(isset($ret_ent) && !empty($ret_ent)){
-					$pcond = true;
-					// enter define pattern and designated function
-					// pattern 1 if query and products 
-					if(isset($ret_ent['query']) && !empty($ret_ent['query']) && isset($ret_ent['products']) && !empty($ret_ent['products'])){
-						$message_to_reply = '';
-						foreach ($ret_ent['products'] as $value) {
-							$message_to_reply .= "
-							".$value." - ";
-							foreach ($ret_ent['query'] as $que) {
-								switch ($que) {
-								case 'prices':
-									$message_to_reply .= "
-								price: ".$sample_data[$value][$que];
-									break;
-								case 'location':
-									$message_to_reply .= "
-								can be bought at: ".$sample_data[$value][$que];
-									break;
-								}
-							}
-						}
-						$message_to_reply = '"text":"'.$message_to_reply.'"';
+			// 	if(isset($ret_ent) && !empty($ret_ent)){
+			// 		$pcond = true;
+			// 		// enter define pattern and designated function
+			// 		// pattern 1 if query and products 
+			// 		if(isset($ret_ent['query']) && !empty($ret_ent['query']) && isset($ret_ent['products']) && !empty($ret_ent['products'])){
+			// 			$message_to_reply = '';
+			// 			foreach ($ret_ent['products'] as $value) {
+			// 				$message_to_reply .= "
+			// 				".$value." - ";
+			// 				foreach ($ret_ent['query'] as $que) {
+			// 					switch ($que) {
+			// 					case 'prices':
+			// 						$message_to_reply .= "
+			// 					price: ".$sample_data[$value][$que];
+			// 						break;
+			// 					case 'location':
+			// 						$message_to_reply .= "
+			// 					can be bought at: ".$sample_data[$value][$que];
+			// 						break;
+			// 					}
+			// 				}
+			// 			}
+			// 			$message_to_reply = '"text":"'.$message_to_reply.'"';
 						
-					} else {
-						$message_to_reply = '"text":"Sorry I didn\'t catch that, could you rephrase your question."';
-					}
-					sendCurl($sender, $message_to_reply, $access_token);
-					// end pattern 1
-				}
+			// 		} else {
+			// 			$message_to_reply = '"text":"Sorry I didn\'t catch that, could you rephrase your question."';
+			// 		}
+			// 		sendCurl($sender, $message_to_reply, $access_token);
+			// 		// end pattern 1
+			// 	}
+			// }
 
-			}
 			if(!$pcond) {
 				$randresp[] = '"attachment":{"type":"template","payload":{"template_type":"generic","elements":[{"title":"Welcome to Happy monkey, I\'m uratex-bot","image_url":"https://scontent.fmnl4-4.fna.fbcdn.net/v/t1.0-1/p160x160/10469695_563190533791082_571472624565872456_n.jpg?oh=9e062ad9f64a9b75bd774cb9af813642&oe=581C080F","subtitle":"The sleep specialist, and mostly I gave random responses",
             "buttons":[{"type":"web_url","url":"https://www.uratex.com.ph","title":"View Website"},{"type":"postback", "title":"It\'s something","payload":"USER_DEFINED_SOMETHING"}]}]}}';
@@ -105,11 +105,11 @@ if(!isset($input['entry'][0]['changes']) || empty($input['entry'][0]['changes'])
 }
 
 
-function sendCurl($sender,$message_json,$access_token)
+function sendCurl($id,$msg,$atoken)
 {
-	$url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$access_token;
+	$url = 'https://graph.facebook.com/v2.6/me/messages?access_token='.$atoken;
 	$ch = curl_init($url);
-	$jsonData = '{"recipient":{"id":"'.$sender.'"},"message":{'.$message_json.'}}';
+	$jsonData = '{"recipient":{"id":"'.$id.'"},"message":{'.$msg.'}}';
 	$jsonDataEncoded = $jsonData;
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
