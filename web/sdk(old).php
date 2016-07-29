@@ -1,6 +1,6 @@
 <?php
 
-$message = "how much bed?";
+$message = "how much for something and where to buy?";
 //$message = "masfdfs";
 
 $entity = [];
@@ -64,6 +64,6 @@ $sample_data =  array('item1' => array('prices' => 35, 'location' => 'kung saan 
   if(!$pcond){
 
   } else {
-    
+
 echo $message_to_reply;
   }

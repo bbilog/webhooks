@@ -58,6 +58,7 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 			$sample_data =  array('item1' => array('prices' => 35, 'location' => 'kung saan saan, sa tabi tabi'),'item2' => array('prices' => 10, 'location' => 'sa tabi tabi, Sa May gilid'), 'item1' => array('prices' => 5, 'location' => 'Sa May Gilid'));
 
 			$message_to_reply = 'Yo!';
+			$message = $input['entry'][0]['messaging'][0]['message']['text'];
 			$message_arr = preg_split('/([^.:!?]+[.:!?]+)/', $message, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 			$pcond = false;
 			foreach ($message_arr as $sentence) {
