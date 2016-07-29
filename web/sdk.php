@@ -24,8 +24,6 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 	$sender = $input['entry'][0]['messaging'][0]['sender']['id'];
 	if(isset($input['entry'][0]['messaging'][0]['message']) && !empty($input['entry'][0]['messaging'][0]['message'])){
 		// $input['entry'][0]['messaging'][0]['message']['quick_reply'];
-		
-
 
 		
 	}
