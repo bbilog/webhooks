@@ -102,6 +102,9 @@ if(isset($input['entry'][0]['messaging']) && !empty($input['entry'][0]['messagin
 					}
 					
 					
+				} else {
+					$pcond = true;
+					$message_to_reply = $message;
 				}
 
 			}
