@@ -21,6 +21,7 @@ if(isset($_POST['submit']) && !empty($_POST['submit']) && isset($_POST['action']
 			break;
 		case 'send_message':
 			$uid = '1258216397556080';
+			$elwin = '1327730183904627';
 			$jsonData = '{"recipient":{"id":"'.$uid.'"},"message":{"text":"'.$_POST['message'].'"}}';
 			$endpoint = 'messages';
 			break;
@@ -74,7 +75,7 @@ if(isset($_POST['submit']) && !empty($_POST['submit']) && isset($_POST['action']
 			<br><hr><br>
 			<h4>Send Text Message</h4>
 			<p>Send custom text message to fb users in your listings/database.</p>
-			<form action="." method="post">
+			<form action="" method="post">
 				<label for="message">Message</label><br><textarea name="message" id="message"></textarea><br>
 				<input type="hidden" name="action" value="send_message" /><input type="submit" value="Send" name="submit"/>
 			</form>
